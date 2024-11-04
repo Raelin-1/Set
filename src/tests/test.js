@@ -20,11 +20,14 @@ test('test add in character in a team', () => {
     expect(result).toEqual((new Set().add(character1)));
 });
 
-test('test add the same character', () => {
-    team.add(character1);
-    expect(() => {
-        team.add(character1);
-    }).toThrow(Error)
+test('should throw error when adding duplicate character', () => {
+    const team = new Team();
+    const character = new Character('Warrior', 10);
+
+    team.add(character);
+    
+    // Attempt to add the same character and catch the error
+    expect(() => team.add(character)).toThrow('Character already exists');
 });
 
 test('test add several characters', () => {
